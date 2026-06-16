@@ -1,13 +1,13 @@
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { adminApi } from '@/api'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 import { Select } from '@/components/ui/select'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { formatPrice, formatDate, formatStatus, cn } from '@/lib/utils'
-import { ArrowLeft, Printer, Package, Truck, CheckCircle, Mail, Phone, Calendar, CreditCard, ShoppingBag } from 'lucide-react'
+import { ArrowLeft, Printer, Package, Truck, CheckCircle, Mail, Phone, CreditCard, ShoppingBag } from 'lucide-react'
 
 const ORDER_STATUSES = ['pending', 'confirmed', 'packed', 'shipped', 'out_for_delivery', 'delivered', 'cancelled']
 
@@ -195,7 +195,7 @@ export function AdminOrderDetailPage() {
               <CardTitle className="text-lg font-bold">Quick Actions</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              <Button className="w-full gap-2" variant="primary">
+              <Button className="w-full gap-2">
                  <Truck className="h-4 w-4" /> Send Update
               </Button>
               <Button className="w-full gap-2" variant="outline">

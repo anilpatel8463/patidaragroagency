@@ -8,9 +8,7 @@ import {
 import { useState, useEffect } from 'react'
 import { useAuthStore } from '@/store/authStore'
 import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Badge } from '@/components/ui/badge'
 const adminNav = [
   { to: '/admin', label: 'Dashboard', icon: LayoutDashboard, category: 'General' },
   { to: '/admin/customers', label: 'Users', icon: Users, category: 'CRM' },

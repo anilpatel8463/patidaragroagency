@@ -1,7 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Download, Calendar, BarChart, PieChart, LineChart } from 'lucide-react'
+import { Download, BarChart, PieChart, LineChart } from 'lucide-react'
 
 export function AdminReportsPage() {
   return (

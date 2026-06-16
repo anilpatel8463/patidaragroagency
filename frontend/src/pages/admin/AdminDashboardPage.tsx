@@ -14,7 +14,7 @@ export function AdminDashboardPage() {
 
   if (isLoading) return (
     <div className="flex flex-col items-center justify-center py-20 gap-4">
-      <Spinner size="lg" />
+      <Spinner />
       <p className="text-muted-foreground animate-pulse">Loading dashboard insights...</p>
     </div>
   )

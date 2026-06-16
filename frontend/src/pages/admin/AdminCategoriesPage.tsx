@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { Plus, Trash2, Pencil, FolderTree, Image as ImageIcon } from 'lucide-react'
+import { Plus, Trash2, Pencil, FolderTree } from 'lucide-react'
 import { adminApi } from '@/api'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -139,7 +139,7 @@ export function AdminCategoriesPage() {
         <div className="flex flex-col items-center justify-center py-20 text-center space-y-3 bg-white rounded-xl border border-dashed">
           <FolderTree className="h-12 w-12 text-muted-foreground/20" />
           <p className="text-muted-foreground font-medium">No categories found. Start by creating one!</p>
-          <Button variant="primary" onClick={() => setShowForm(true)}>Add your first category</Button>
+          <Button onClick={() => setShowForm(true)}>Add your first category</Button>
         </div>
       )}
     </div>

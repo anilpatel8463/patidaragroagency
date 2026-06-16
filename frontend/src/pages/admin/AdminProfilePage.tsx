@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { User, Mail, Shield, Camera } from 'lucide-react'
+import { Mail, Shield, Camera } from 'lucide-react'
 
 export function AdminProfilePage() {
   const { user } = useAuthStore()

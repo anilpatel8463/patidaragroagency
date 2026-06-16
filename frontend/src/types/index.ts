@@ -80,6 +80,8 @@ export interface Order {
   shipping_address: Record<string, string>;
   payment_status: string;
   order_status: string;
+  payment_method: string;
+  user?: User;
   tracking_number?: string;
   coupon_code?: string;
   notes?: string;

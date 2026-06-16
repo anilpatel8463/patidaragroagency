@@ -7,9 +7,9 @@ import { Select } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Spinner } from '@/components/ui/spinner'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { formatPrice, formatDate, formatStatus, cn } from '@/lib/utils'
-import { Search, Filter, Eye, Truck, CreditCard, ChevronRight, ShoppingBag } from 'lucide-react'
+import { Search, Filter, Truck, CreditCard, ChevronRight, ShoppingBag } from 'lucide-react'
 import type { Order } from '@/types'
 
 const ORDER_STATUSES = ['pending', 'confirmed', 'packed', 'shipped', 'out_for_delivery', 'delivered', 'cancelled']

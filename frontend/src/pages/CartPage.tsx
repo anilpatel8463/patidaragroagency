@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Minus, Plus, Trash2, ShoppingBag } from 'lucide-react'
 import { useCartStore } from '@/store/cartStore'
 import { Button } from '@/components/ui/button'
@@ -8,7 +8,7 @@ import { formatPrice } from '@/lib/utils'
 
 export function CartPage() {
   const { items, subtotal, isLoading, fetchCart, updateQuantity, removeItem } = useCartStore()
-  const navigate = useNavigate()
+
 
   useEffect(() => { fetchCart() }, [fetchCart])
 
