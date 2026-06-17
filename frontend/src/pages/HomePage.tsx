@@ -8,6 +8,7 @@ import { productApi, categoryApi } from '@/api'
 import { ProductCard } from '@/components/product/ProductCard'
 import { SectionHeader } from '@/components/ui/section-header'
 import { Button } from '@/components/ui/button'
+import { useTranslation } from '@/context/LanguageContext'
 
 const HERO_IMG = 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1920&q=80'
 
@@ -58,6 +59,7 @@ const categoryIcons: Record<string, typeof Sprout> = {
 }
 
 export function HomePage() {
+  const { t } = useTranslation()
   const { data: bestSellers } = useQuery({
     queryKey: ['best-sellers'],
     queryFn: () => productApi.bestSellers().then((r) => r.data.data),
@@ -92,17 +94,14 @@ export function HomePage() {
               India&apos;s Trusted Agriculture Marketplace
             </span>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-6 animate-fade-up opacity-0-start animate-delay-100">
-              Grow Your Harvest with{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-agro-300 to-emerald-200">
-                Premium Agro Products
-              </span>
+              {t('home.heroTitle')}
             </h1>
             <p className="text-lg md:text-xl text-agro-100/90 mb-8 max-w-xl leading-relaxed animate-fade-up opacity-0-start animate-delay-200">
-              Quality seeds, fertilizers, pesticides, and farming tools — delivered to your doorstep. Trusted by farmers across India.
+              {t('home.heroSub')}
             </p>
             <div className="flex flex-wrap gap-4 animate-fade-up opacity-0-start animate-delay-300">
               <Button size="lg" className="rounded-full px-8 h-12 text-base btn-primary-glow" asChild>
-                <Link to="/products">Shop Now <ArrowRight className="ml-2 h-5 w-5" /></Link>
+                <Link to="/products">{t('home.shopNow')} <ArrowRight className="ml-2 h-5 w-5" /></Link>
               </Button>
               <Button size="lg" variant="outline" className="rounded-full px-8 h-12 text-base border-white/30 text-white hover:bg-white/10 bg-white/5 backdrop-blur-sm" asChild>
                 <Link to="/about">Our Story</Link>

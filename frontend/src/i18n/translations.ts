@@ -1,0 +1,135 @@
+export const translations = {
+  en: {
+    nav: {
+      home: "Home",
+      products: "Products",
+      about: "About Us",
+      contact: "Contact",
+      trackOrder: "Track Order",
+      login: "Login",
+      register: "Register",
+      getStarted: "Get Started",
+      admin: "Admin",
+      dashboard: "My Dashboard",
+      signOut: "Sign Out",
+      searchPlaceholder: "Search seeds, fertilizers...",
+      categories: "Categories",
+      viewAllProducts: "View All Products →",
+      freeDelivery: "Free delivery on orders above ₹999",
+      trustedBy: "Trusted by 10,000+ farmers across India"
+    },
+    home: {
+      heroTitle: "Premium Agro Solutions for Every Farmer",
+      heroSub: "Empower your harvest with certified organic fertilizers, hybrid seeds, and professional crop protection.",
+      shopNow: "Shop Now",
+      exploreCategories: "Explore Categories",
+      whyChooseUs: "Why Farmers Trust Us",
+      qualityProducts: "Quality Products",
+      qualityProductsSub: "100% certified seeds, fertilizers, and tools sourced from trusted manufacturers.",
+      fastDelivery: "Fast & Reliable Delivery",
+      fastDeliverySub: "Secure packaging and prompt delivery directly to your farm gates across India.",
+      expertSupport: "Expert Agro Advice",
+      expertSupportSub: "Dedicated customer service and expert guidance to help optimize your crop yields."
+    },
+    footer: {
+      newsletterTitle: "Grow Smarter with Our Newsletter",
+      newsletterSub: "Get farming tips, seasonal offers, and product updates delivered to your inbox.",
+      subscribe: "Subscribe",
+      emailPlaceholder: "Enter your email",
+      subscribed: "Thank you for subscribing!",
+      quickLinks: "Quick Links",
+      categories: "Categories",
+      contactUs: "Contact Us",
+      rights: "Patidar Agro Solution. All rights reserved."
+    },
+    contact: {
+      badge: "Get in Touch",
+      title: "We'd Love to Hear From You",
+      subtitle: "Have questions about our products or need farming advice? Our team is here to help.",
+      visitUs: "Visit Us",
+      callUs: "Call Us",
+      emailUs: "Email Us",
+      workingHours: "Working Hours",
+      sendMsg: "Send Us a Message",
+      sendMsgSub: "Fill out the form and we'll get back to you within 24 hours.",
+      fullName: "Full Name",
+      emailAddr: "Email Address",
+      phone: "Phone Number",
+      subject: "Subject",
+      message: "Message",
+      sendButton: "Send Message",
+      msgSent: "Message Sent!",
+      msgSentSub: "Thank you for reaching out. We'll respond shortly.",
+      findUs: "Find Us on the Map",
+      visitStore: "Visit our store in Indore, Madhya Pradesh"
+    }
+  },
+  hi: {
+    nav: {
+      home: "होम",
+      products: "उत्पाद",
+      about: "हमारे बारे में",
+      contact: "संपर्क करें",
+      trackOrder: "ऑर्डर ट्रैक करें",
+      login: "लॉगिन",
+      register: "पंजीकरण",
+      getStarted: "शुरू करें",
+      admin: "एडमिन",
+      dashboard: "मेरा डैशबोर्ड",
+      signOut: "साइन आउट",
+      searchPlaceholder: "बीज, उर्वरक खोजें...",
+      categories: "श्रेणियाँ",
+      viewAllProducts: "सभी उत्पाद देखें →",
+      freeDelivery: "₹999 से अधिक के ऑर्डर पर मुफ्त डिलीवरी",
+      trustedBy: "भारत भर में 10,000+ किसानों द्वारा विश्वसनीय"
+    },
+    home: {
+      heroTitle: "हर किसान के लिए प्रीमियम कृषि समाधान",
+      heroSub: "प्रमाणित जैविक उर्वरकों, संकर बीजों और पेशेवर फसल सुरक्षा के साथ अपनी उपज बढ़ाएं।",
+      shopNow: "अभी खरीदें",
+      exploreCategories: "श्रेणियाँ देखें",
+      whyChooseUs: "किसान हम पर क्यों भरोसा करते हैं",
+      qualityProducts: "गुणवत्ता वाले उत्पाद",
+      qualityProductsSub: "विश्वसनीय निर्माताओं से प्राप्त 100% प्रमाणित बीज, उर्वरक और उपकरण।",
+      fastDelivery: "तेज़ और सुरक्षित डिलीवरी",
+      fastDeliverySub: "पूरे भारत में सीधे आपके खेतों तक सुरक्षित पैकेजिंग और त्वरित डिलीवरी।",
+      expertSupport: "विशेषज्ञ कृषि सलाह",
+      expertSupportSub: "आपकी फसल की उपज को बेहतर बनाने में मदद के लिए समर्पित ग्राहक सेवा और सलाह।"
+    },
+    footer: {
+      newsletterTitle: "हमारे समाचार पत्र के साथ समझदारी से बढ़ें",
+      newsletterSub: "खेती के टिप्स, मौसमी ऑफर और उत्पाद अपडेट अपने इनबॉक्स में प्राप्त करें।",
+      subscribe: "सदस्य बनें",
+      emailPlaceholder: "अपना ईमेल दर्ज करें",
+      subscribed: "सदस्यता लेने के लिए धन्यवाद!",
+      quickLinks: "त्वरित लिंक",
+      categories: "श्रेणियाँ",
+      contactUs: "संपर्क करें",
+      rights: "पाटीदार एग्रो सॉल्यूशन। सर्वाधिकार सुरक्षित।"
+    },
+    contact: {
+      badge: "संपर्क करें",
+      title: "हमें आपसे सुनना अच्छा लगेगा",
+      subtitle: "हमारे उत्पादों के बारे में प्रश्न हैं या खेती की सलाह चाहिए? हमारी टीम यहाँ मदद के लिए है।",
+      visitUs: "यहाँ मिलें",
+      callUs: "कॉल करें",
+      emailUs: "ईमेल करें",
+      workingHours: "कार्य के घंटे",
+      sendMsg: "हमें संदेश भेजें",
+      sendMsgSub: "फ़ॉर्म भरें और हम 24 घंटे के भीतर आपसे संपर्क करेंगे।",
+      fullName: "पूरा नाम",
+      emailAddr: "ईमेल पता",
+      phone: "फ़ोन नंबर",
+      subject: "विषय",
+      message: "संदेश",
+      sendButton: "संदेश भेजें",
+      msgSent: "संदेश भेज दिया गया!",
+      msgSentSub: "संपर्क करने के लिए धन्यवाद। हम शीघ्र ही उत्तर देंगे।",
+      findUs: "हमें मानचित्र पर खोजें",
+      visitStore: "इंदौर, मध्य प्रदेश में हमारे स्टोर पर आएं"
+    }
+  }
+} as const;
+
+export type Language = 'en' | 'hi';
+export type TranslationKey = keyof typeof translations.en;

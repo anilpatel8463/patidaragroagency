@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { LanguageProvider } from '@/context/LanguageContext'
 import { PublicLayout } from '@/components/layout/PublicLayout'
 import { AdminLayout } from '@/components/layout/AdminLayout'
 import { ProtectedRoute, AdminRoute, PublicOnlyRoute } from '@/components/auth/ProtectedRoute'
@@ -41,50 +42,52 @@ const queryClient = new QueryClient({
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<PublicLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path="products" element={<ProductsPage />} />
-            <Route path="products/:id" element={<ProductDetailPage />} />
-            <Route path="about" element={<AboutPage />} />
-            <Route path="contact" element={<ContactPage />} />
-            <Route path="track" element={<TrackingPage />} />
-            <Route path="track/:trackingNumber" element={<TrackingPage />} />
+    <LanguageProvider>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<PublicLayout />}>
+              <Route index element={<HomePage />} />
+              <Route path="products" element={<ProductsPage />} />
+              <Route path="products/:id" element={<ProductDetailPage />} />
+              <Route path="about" element={<AboutPage />} />
+              <Route path="contact" element={<ContactPage />} />
+              <Route path="track" element={<TrackingPage />} />
+              <Route path="track/:trackingNumber" element={<TrackingPage />} />
 
-            <Route path="dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
-            <Route path="orders" element={<ProtectedRoute><OrdersPage /></ProtectedRoute>} />
-            <Route path="orders/:id" element={<ProtectedRoute><OrderDetailPage /></ProtectedRoute>} />
-            <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
-            <Route path="wishlist" element={<ProtectedRoute><WishlistPage /></ProtectedRoute>} />
-            <Route path="cart" element={<ProtectedRoute><CartPage /></ProtectedRoute>} />
-            <Route path="checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
-            <Route path="checkout/success" element={<ProtectedRoute><CheckoutSuccessPage /></ProtectedRoute>} />
-            <Route path="checkout/cancel" element={<ProtectedRoute><CheckoutCancelPage /></ProtectedRoute>} />
-          </Route>
+              <Route path="dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+              <Route path="orders" element={<ProtectedRoute><OrdersPage /></ProtectedRoute>} />
+              <Route path="orders/:id" element={<ProtectedRoute><OrderDetailPage /></ProtectedRoute>} />
+              <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+              <Route path="wishlist" element={<ProtectedRoute><WishlistPage /></ProtectedRoute>} />
+              <Route path="cart" element={<ProtectedRoute><CartPage /></ProtectedRoute>} />
+              <Route path="checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
+              <Route path="checkout/success" element={<ProtectedRoute><CheckoutSuccessPage /></ProtectedRoute>} />
+              <Route path="checkout/cancel" element={<ProtectedRoute><CheckoutCancelPage /></ProtectedRoute>} />
+            </Route>
 
-          <Route path="login" element={<PublicOnlyRoute><LoginPage /></PublicOnlyRoute>} />
-          <Route path="register" element={<PublicOnlyRoute><RegisterPage /></PublicOnlyRoute>} />
-          <Route path="forgot-password" element={<PublicOnlyRoute><ForgotPasswordPage /></PublicOnlyRoute>} />
+            <Route path="login" element={<PublicOnlyRoute><LoginPage /></PublicOnlyRoute>} />
+            <Route path="register" element={<PublicOnlyRoute><RegisterPage /></PublicOnlyRoute>} />
+            <Route path="forgot-password" element={<PublicOnlyRoute><ForgotPasswordPage /></PublicOnlyRoute>} />
 
-          <Route path="admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
-            <Route index element={<AdminDashboardPage />} />
-            <Route path="products" element={<AdminProductsPage />} />
-            <Route path="categories" element={<AdminCategoriesPage />} />
-            <Route path="orders" element={<AdminOrdersPage />} />
-            <Route path="orders/:id" element={<AdminOrderDetailPage />} />
-            <Route path="customers" element={<AdminCustomersPage />} />
-            <Route path="reviews" element={<AdminReviewsPage />} />
-            <Route path="coupons" element={<AdminCouponsPage />} />
-            <Route path="newsletters" element={<AdminNewslettersPage />} />
-            <Route path="leads" element={<AdminLeadsPage />} />
-            <Route path="reports" element={<AdminReportsPage />} />
-            <Route path="settings" element={<AdminSettingsPage />} />
-            <Route path="profile" element={<AdminProfilePage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </QueryClientProvider>
+            <Route path="admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
+              <Route index element={<AdminDashboardPage />} />
+              <Route path="products" element={<AdminProductsPage />} />
+              <Route path="categories" element={<AdminCategoriesPage />} />
+              <Route path="orders" element={<AdminOrdersPage />} />
+              <Route path="orders/:id" element={<AdminOrderDetailPage />} />
+              <Route path="customers" element={<AdminCustomersPage />} />
+              <Route path="reviews" element={<AdminReviewsPage />} />
+              <Route path="coupons" element={<AdminCouponsPage />} />
+              <Route path="newsletters" element={<AdminNewslettersPage />} />
+              <Route path="leads" element={<AdminLeadsPage />} />
+              <Route path="reports" element={<AdminReportsPage />} />
+              <Route path="settings" element={<AdminSettingsPage />} />
+              <Route path="profile" element={<AdminProfilePage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </QueryClientProvider>
+    </LanguageProvider>
   )
 }

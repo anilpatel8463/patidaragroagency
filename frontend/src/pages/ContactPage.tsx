@@ -5,16 +5,18 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { SectionHeader } from '@/components/ui/section-header'
-
-const contactInfo = [
-  { icon: MapPin, title: 'Visit Us', text: '123 Farm Road, Indore, Madhya Pradesh 452001', sub: 'India' },
-  { icon: Phone, title: 'Call Us', text: '+91 8463881716', sub: 'Mon-Sat, 9AM-6PM' },
-  { icon: Mail, title: 'Email Us', text: 'info@agrosolution.com', sub: 'We reply within 24 hours' },
-  { icon: Clock, title: 'Working Hours', text: 'Monday - Saturday', sub: '9:00 AM - 6:00 PM IST' },
-]
+import { useTranslation } from '@/context/LanguageContext'
 
 export function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
+  const { t } = useTranslation()
+
+  const contactInfo = [
+    { icon: MapPin, title: t('contact.visitUs'), text: '123 Farm Road, Indore, Madhya Pradesh 452001', sub: 'India' },
+    { icon: Phone, title: t('contact.callUs'), text: '+91 8463881716', sub: 'Mon-Sat, 9AM-6PM' },
+    { icon: Mail, title: t('contact.emailUs'), text: 'info@agrosolution.com', sub: 'We reply within 24 hours' },
+    { icon: Clock, title: t('contact.workingHours'), text: 'Monday - Saturday', sub: '9:00 AM - 6:00 PM IST' },
+  ]
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -34,11 +36,11 @@ export function ContactPage() {
         </div>
         <div className="container mx-auto px-4 relative text-center">
           <span className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold tracking-wider uppercase bg-agro-800 text-agro-300 rounded-full">
-            Get in Touch
+            {t('contact.badge')}
           </span>
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">We&apos;d Love to Hear From You</h1>
+          <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">{t('contact.title')}</h1>
           <p className="text-agro-300 text-lg max-w-xl mx-auto">
-            Have questions about our products or need farming advice? Our team is here to help.
+            {t('contact.subtitle')}
           </p>
         </div>
       </section>
@@ -70,30 +72,30 @@ export function ContactPage() {
 
             <div className="lg:col-span-2">
               <div className="card-premium p-8 md:p-10">
-                <h2 className="font-display text-2xl font-bold text-agro-900 mb-2">Send Us a Message</h2>
-                <p className="text-muted-foreground mb-8">Fill out the form and we&apos;ll get back to you within 24 hours.</p>
+                <h2 className="font-display text-2xl font-bold text-agro-900 mb-2">{t('contact.sendMsg')}</h2>
+                <p className="text-muted-foreground mb-8">{t('contact.sendMsgSub')}</p>
 
                 {submitted ? (
                   <div className="text-center py-16">
                     <div className="inline-flex p-4 rounded-full bg-agro-100 mb-4">
                       <Send className="h-8 w-8 text-agro-600" />
                     </div>
-                    <p className="font-display text-xl font-bold text-agro-900 mb-2">Message Sent!</p>
-                    <p className="text-muted-foreground">Thank you for reaching out. We&apos;ll respond shortly.</p>
+                    <p className="font-display text-xl font-bold text-agro-900 mb-2">{t('contact.msgSent')}</p>
+                    <p className="text-muted-foreground">{t('contact.msgSentSub')}</p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid md:grid-cols-2 gap-5">
-                      <div><Label>Full Name</Label><Input required placeholder="Your name" className="rounded-xl" /></div>
-                      <div><Label>Email Address</Label><Input type="email" required placeholder="you@email.com" className="rounded-xl" /></div>
+                      <div><Label>{t('contact.fullName')}</Label><Input required placeholder="Your name" className="rounded-xl" /></div>
+                      <div><Label>{t('contact.emailAddr')}</Label><Input type="email" required placeholder="you@email.com" className="rounded-xl" /></div>
                     </div>
                     <div className="grid md:grid-cols-2 gap-5">
-                      <div><Label>Phone Number</Label><Input placeholder="+91 98765 43210" className="rounded-xl" /></div>
-                      <div><Label>Subject</Label><Input required placeholder="How can we help?" className="rounded-xl" /></div>
+                      <div><Label>{t('contact.phone')}</Label><Input placeholder="+91 84638 81716" className="rounded-xl" /></div>
+                      <div><Label>{t('contact.subject')}</Label><Input required placeholder="How can we help?" className="rounded-xl" /></div>
                     </div>
-                    <div><Label>Message</Label><Textarea rows={5} required placeholder="Tell us about your farming needs..." className="rounded-xl" /></div>
+                    <div><Label>{t('contact.message')}</Label><Textarea rows={5} required placeholder="Tell us about your farming needs..." className="rounded-xl" /></div>
                     <Button type="submit" size="lg" className="rounded-full px-8 btn-primary-glow">
-                      Send Message <Send className="ml-2 h-4 w-4" />
+                      {t('contact.sendButton')} <Send className="ml-2 h-4 w-4" />
                     </Button>
                   </form>
                 )}
@@ -107,8 +109,8 @@ export function ContactPage() {
         <div className="container mx-auto px-4">
           <SectionHeader
             badge="Location"
-            title="Find Us on the Map"
-            subtitle="Visit our store in Indore, Madhya Pradesh"
+            title={t('contact.findUs')}
+            subtitle={t('contact.visitStore')}
           />
           <div className="card-premium overflow-hidden rounded-3xl h-[400px]">
             <iframe

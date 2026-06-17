@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { newsletterApi } from '@/api'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { useTranslation } from '@/context/LanguageContext'
 
 const quickLinks = [
   { to: '/products', label: 'Shop Products' },
@@ -29,6 +30,7 @@ const socialLinks = [
 export function Footer() {
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
+  const { t } = useTranslation()
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -51,26 +53,26 @@ export function Footer() {
           <div className="glass-dark rounded-3xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <h3 className="font-display text-2xl md:text-3xl font-bold text-white mb-2">
-                Grow Smarter with Our Newsletter
+                {t('footer.newsletterTitle')}
               </h3>
               <p className="text-agro-300 text-sm md:text-base">
-                Get farming tips, seasonal offers, and product updates delivered to your inbox.
+                {t('footer.newsletterSub')}
               </p>
             </div>
             {subscribed ? (
-              <p className="text-agro-400 font-medium whitespace-nowrap">Thank you for subscribing!</p>
+              <p className="text-agro-400 font-medium whitespace-nowrap">{t('footer.subscribed')}</p>
             ) : (
               <form onSubmit={handleSubscribe} className="flex w-full md:w-auto gap-2 min-w-[300px]">
                 <Input
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder={t('footer.emailPlaceholder')}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   className="bg-agro-900/80 border-agro-700 text-white placeholder:text-agro-500 rounded-full flex-1"
                 />
                 <Button type="submit" className="rounded-full btn-primary-glow shrink-0 px-6">
-                  Subscribe <ArrowRight className="h-4 w-4 ml-1" />
+                  {t('footer.subscribe')} <ArrowRight className="h-4 w-4 ml-1" />
                 </Button>
               </form>
             )}
@@ -105,12 +107,12 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Quick Links</h3>
+            <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">{t('footer.quickLinks')}</h3>
             <ul className="space-y-2.5">
               {quickLinks.map((link) => (
                 <li key={link.to}>
                   <Link to={link.to} className="text-agro-300 hover:text-white text-sm transition-colors hover:translate-x-1 inline-block">
-                    {link.label}
+                    {link.label === 'Shop Products' ? t('nav.products') : link.label === 'About Us' ? t('nav.about') : link.label === 'Contact' ? t('nav.contact') : t('nav.trackOrder')}
                   </Link>
                 </li>
               ))}
@@ -118,7 +120,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Categories</h3>
+            <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">{t('footer.categories')}</h3>
             <ul className="space-y-2.5">
               {categories.map((link) => (
                 <li key={link.to}>
@@ -131,7 +133,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Contact Us</h3>
+            <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">{t('footer.contactUs')}</h3>
             <ul className="space-y-3 text-sm text-agro-300">
               <li className="flex items-start gap-2.5">
                 <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-agro-500" />
@@ -139,7 +141,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="h-4 w-4 shrink-0 text-agro-500" />
-                +91 98765 43210
+                +91 84638 81716
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="h-4 w-4 shrink-0 text-agro-500" />
@@ -150,7 +152,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-agro-800/80 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-agro-500">
-          <p>&copy; {new Date().getFullYear()} Patidar Agro Solution. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {t('footer.rights')}</p>
           <div className="flex gap-6">
             <Link to="/about" className="hover:text-agro-300 transition-colors">Privacy Policy</Link>
             <Link to="/about" className="hover:text-agro-300 transition-colors">Terms of Service</Link>
