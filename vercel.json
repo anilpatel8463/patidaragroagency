@@ -2,10 +2,6 @@
   "version": 2,
   "builds": [
     {
-      "src": "backend/api/index.py",
-      "use": "@vercel/python"
-    },
-    {
       "src": "frontend/package.json",
       "use": "@vercel/static-build",
       "config": { "distDir": "dist" }
@@ -14,7 +10,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "backend/api/index.py"
+      "dest": "https://patidaragroagency-1.onrender.com/api/$1"
     },
     {
       "src": "/assets/(.*)",
