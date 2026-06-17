@@ -1,5 +1,6 @@
 import uuid
 from fastapi import APIRouter, Depends, HTTPException, status, Query
+from sqlalchemy import or_
 from sqlalchemy.orm import Session, joinedload
 from app.db.session import get_db
 from app.core.deps import get_current_user
@@ -47,7 +48,10 @@ def list_orders(
 @router.get("/track/{tracking_number}", response_model=ResponseModel[TrackingResponse])
 def track_order(tracking_number: str, db: Session = Depends(get_db)):
     order = db.query(Order).options(joinedload(Order.status_history)).filter(
-        Order.tracking_number == tracking_number
+        or_(
+            Order.tracking_number == tracking_number,
+            Order.order_number == tracking_number
+        )
     ).first()
     if not order:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Tracking number not found")

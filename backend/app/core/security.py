@@ -1,6 +1,14 @@
 from datetime import datetime, timedelta, timezone
 from typing import Optional
 from jose import JWTError, jwt
+import bcrypt
+
+# passlib expects bcrypt.__about__.__version__ which was removed in bcrypt 4.0.0+
+if not hasattr(bcrypt, "__about__"):
+    class BcryptAbout:
+        __version__ = bcrypt.__version__
+    bcrypt.__about__ = BcryptAbout()
+
 from passlib.context import CryptContext
 from app.core.config import get_settings
 

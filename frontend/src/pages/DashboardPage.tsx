@@ -1,20 +1,25 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { Package, ShoppingBag, Heart, User, Settings, LogOut } from 'lucide-react'
-import { orderApi } from '@/api'
+import { Package, ShoppingBag, Heart, User, Settings } from 'lucide-react'
+import { orderApi, productApi } from '@/api'
 import { useAuthStore } from '@/store/authStore'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
+import { ProductCard } from '@/components/product/ProductCard'
 import { formatPrice, formatDate, formatStatus } from '@/lib/utils'
 
 export function DashboardPage() {
-  const { user, logout } = useAuthStore()
-  const navigate = useNavigate()
+  const { user } = useAuthStore()
   const { data: orders, isLoading } = useQuery({
     queryKey: ['orders', 1],
     queryFn: () => orderApi.list(1).then((r) => r.data.data),
+  })
+
+  const { data: products, isLoading: loadingProducts } = useQuery({
+    queryKey: ['featured-products'],
+    queryFn: () => productApi.featured().then((r) => r.data.data),
   })
 
   const quickLinks = [
@@ -22,7 +27,6 @@ export function DashboardPage() {
     { to: '/wishlist', icon: Heart, label: 'Wishlist' },
     { to: '/profile', icon: User, label: 'Profile' },
     { to: '/cart', icon: Package, label: 'Cart' },
-    { to: '/logout', icon: LogOut, label: 'Sign Out' },
   ]
 
   if (user?.role === 'admin') {
@@ -36,32 +40,14 @@ export function DashboardPage() {
 
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-8">
         {quickLinks.map((link) => (
-          link.to === '/logout' ? (
-            <button
-              key={link.to}
-              onClick={() => {
-                logout()
-                navigate('/')
-              }}
-              className="w-full text-left"
-            >
-              <Card className="hover:shadow-md transition-shadow cursor-pointer h-full border-rose-100 hover:bg-rose-50/30">
-                <CardContent className="flex flex-col items-center py-6">
-                  <link.icon className="h-8 w-8 text-rose-500 mb-2" />
-                  <span className="font-medium text-sm text-rose-600">{link.label}</span>
-                </CardContent>
-              </Card>
-            </button>
-          ) : (
-            <Link key={link.to} to={link.to}>
-              <Card className="hover:shadow-md transition-shadow cursor-pointer h-full">
-                <CardContent className="flex flex-col items-center py-6">
-                  <link.icon className="h-8 w-8 text-agro-600 mb-2" />
-                  <span className="font-medium text-sm">{link.label}</span>
-                </CardContent>
-              </Card>
-            </Link>
-          )
+          <Link key={link.to} to={link.to}>
+            <Card className="hover:shadow-md transition-shadow cursor-pointer h-full">
+              <CardContent className="flex flex-col items-center py-6">
+                <link.icon className="h-8 w-8 text-agro-600 mb-2" />
+                <span className="font-medium text-sm">{link.label}</span>
+              </CardContent>
+            </Card>
+          </Link>
         ))}
       </div>
 
@@ -93,6 +79,29 @@ export function DashboardPage() {
           )}
         </CardContent>
       </Card>
+
+      <div className="mt-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight text-agro-900">Recommended Products</h2>
+            <p className="text-muted-foreground mt-1">Handpicked quality products for your farm</p>
+          </div>
+          <Button variant="outline" className="rounded-full border-agro-200 hover:bg-agro-50 w-fit" asChild>
+            <Link to="/products">Browse All Products</Link>
+          </Button>
+        </div>
+        {loadingProducts ? (
+          <Spinner className="py-12" />
+        ) : products && products.length > 0 ? (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {products.slice(0, 4).map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
+        ) : (
+          <p className="text-muted-foreground text-center py-8">No recommended products available at this time.</p>
+        )}
+      </div>
     </div>
   )
 }

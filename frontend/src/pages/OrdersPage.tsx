@@ -39,11 +39,9 @@ export function OrdersPage() {
                   <p className="font-bold text-lg">{formatPrice(order.total_amount)}</p>
                 </div>
                 <div className="flex gap-2">
-                  {order.tracking_number && (
-                    <Button variant="outline" size="sm" asChild>
-                      <Link to={`/track/${order.tracking_number}`}>Track</Link>
-                    </Button>
-                  )}
+                  <Button variant="outline" size="sm" asChild>
+                    <Link to={`/track/${order.tracking_number || order.order_number}`}>Track</Link>
+                  </Button>
                   <Button size="sm" asChild><Link to={`/orders/${order.id}`}>Details</Link></Button>
                 </div>
               </div>

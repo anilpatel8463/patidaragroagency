@@ -52,21 +52,21 @@ export default function App() {
             <Route path="contact" element={<ContactPage />} />
             <Route path="track" element={<TrackingPage />} />
             <Route path="track/:trackingNumber" element={<TrackingPage />} />
+
+            <Route path="dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+            <Route path="orders" element={<ProtectedRoute><OrdersPage /></ProtectedRoute>} />
+            <Route path="orders/:id" element={<ProtectedRoute><OrderDetailPage /></ProtectedRoute>} />
+            <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+            <Route path="wishlist" element={<ProtectedRoute><WishlistPage /></ProtectedRoute>} />
+            <Route path="cart" element={<ProtectedRoute><CartPage /></ProtectedRoute>} />
+            <Route path="checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
+            <Route path="checkout/success" element={<ProtectedRoute><CheckoutSuccessPage /></ProtectedRoute>} />
+            <Route path="checkout/cancel" element={<ProtectedRoute><CheckoutCancelPage /></ProtectedRoute>} />
           </Route>
 
           <Route path="login" element={<PublicOnlyRoute><LoginPage /></PublicOnlyRoute>} />
           <Route path="register" element={<PublicOnlyRoute><RegisterPage /></PublicOnlyRoute>} />
           <Route path="forgot-password" element={<PublicOnlyRoute><ForgotPasswordPage /></PublicOnlyRoute>} />
-
-          <Route path="dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
-          <Route path="orders" element={<ProtectedRoute><OrdersPage /></ProtectedRoute>} />
-          <Route path="orders/:id" element={<ProtectedRoute><OrderDetailPage /></ProtectedRoute>} />
-          <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
-          <Route path="wishlist" element={<ProtectedRoute><WishlistPage /></ProtectedRoute>} />
-          <Route path="cart" element={<ProtectedRoute><CartPage /></ProtectedRoute>} />
-          <Route path="checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
-          <Route path="checkout/success" element={<ProtectedRoute><CheckoutSuccessPage /></ProtectedRoute>} />
-          <Route path="checkout/cancel" element={<ProtectedRoute><CheckoutCancelPage /></ProtectedRoute>} />
 
           <Route path="admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
             <Route index element={<AdminDashboardPage />} />

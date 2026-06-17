@@ -66,7 +66,7 @@ class OrderStatusUpdate(BaseModel):
 
 
 class TrackingResponse(BaseModel):
-    tracking_number: str
+    tracking_number: Optional[str] = None
     order_number: str
     order_status: str
     estimated_delivery: Optional[date] = None

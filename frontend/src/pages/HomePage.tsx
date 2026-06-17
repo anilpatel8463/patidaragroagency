@@ -8,7 +8,6 @@ import { productApi, categoryApi } from '@/api'
 import { ProductCard } from '@/components/product/ProductCard'
 import { SectionHeader } from '@/components/ui/section-header'
 import { Button } from '@/components/ui/button'
-import { Spinner } from '@/components/ui/spinner'
 
 const HERO_IMG = 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1920&q=80'
 
@@ -59,11 +58,6 @@ const categoryIcons: Record<string, typeof Sprout> = {
 }
 
 export function HomePage() {
-  const { data: featured, isLoading: loadingFeatured } = useQuery({
-    queryKey: ['featured-products'],
-    queryFn: () => productApi.featured().then((r) => r.data.data),
-  })
-
   const { data: bestSellers } = useQuery({
     queryKey: ['best-sellers'],
     queryFn: () => productApi.bestSellers().then((r) => r.data.data),
@@ -199,30 +193,6 @@ export function HomePage() {
         </section>
       )}
 
-      {/* Featured Products */}
-      <section className="section-padding">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
-            <div>
-              <span className="inline-block px-4 py-1.5 mb-3 text-xs font-semibold tracking-wider uppercase bg-agro-100 text-agro-700 rounded-full">
-                Featured
-              </span>
-              <h2 className="section-heading">Premium Products</h2>
-              <p className="text-muted-foreground mt-2">Handpicked quality products for your farm</p>
-            </div>
-            <Button variant="outline" className="rounded-full border-agro-200 hover:bg-agro-50 w-fit" asChild>
-              <Link to="/products">View All Products <ArrowRight className="ml-2 h-4 w-4" /></Link>
-            </Button>
-          </div>
-          {loadingFeatured ? (
-            <Spinner className="py-12" />
-          ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-              {featured?.map((p) => <ProductCard key={p.id} product={p} />)}
-            </div>
-          )}
-        </div>
-      </section>
 
       {/* Why Choose Us */}
       <section className="section-padding bg-agro-950 relative overflow-hidden">

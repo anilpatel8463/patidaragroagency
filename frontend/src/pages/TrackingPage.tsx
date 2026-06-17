@@ -58,7 +58,7 @@ export function TrackingPage() {
           <div className="flex justify-between items-start">
             <div>
               <p className="text-sm text-muted-foreground">Tracking Number</p>
-              <p className="font-mono font-bold text-lg">{tracking.tracking_number}</p>
+              <p className="font-mono font-bold text-lg">{tracking.tracking_number || 'Not Shipped Yet'}</p>
             </div>
             <div className="text-right">
               <p className="text-sm text-muted-foreground">Order</p>
