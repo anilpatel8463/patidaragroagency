@@ -2,6 +2,8 @@
 from decimal import Decimal
 from app.db.session import SessionLocal, engine, Base
 from app.models import *
+from app.models.user import UserRole
+from app.models.coupon import DiscountType
 from app.core.security import get_password_hash
 
 SAMPLE_CATEGORIES = [
@@ -33,62 +35,70 @@ def seed():
     Base.metadata.create_all(bind=engine)
     db = SessionLocal()
     try:
-        if db.query(User).filter(User.email == "admin@agrosolution.com").first():
-            print("Database already seeded.")
-            return
+        admin = db.query(User).filter(User.email == "admin@agrosolution.com").first()
+        if not admin:
+            admin = User(
+                full_name="Admin User",
+                email="admin@agrosolution.com",
+                password_hash=get_password_hash("admin123"),
+                role=UserRole.admin,
+            )
+            db.add(admin)
 
-        admin = User(
-            full_name="Admin User",
-            email="admin@agrosolution.com",
-            password_hash=get_password_hash("admin123"),
-            role=UserRole.admin,
-        )
-        customer = User(
-            full_name="Demo Customer",
-            email="customer@agrosolution.com",
-            password_hash=get_password_hash("customer123"),
-            phone="9876543210",
-            address="123 Farm Road",
-            city="Indore",
-            state="Madhya Pradesh",
-            pincode="452001",
-        )
-        db.add_all([admin, customer])
+        customer = db.query(User).filter(User.email == "customer@agrosolution.com").first()
+        if not customer:
+            customer = User(
+                full_name="Demo Customer",
+                email="customer@agrosolution.com",
+                password_hash=get_password_hash("customer123"),
+                phone="9876543210",
+                address="123 Farm Road",
+                city="Indore",
+                state="Madhya Pradesh",
+                pincode="452001",
+            )
+            db.add(customer)
         db.flush()
 
         cat_map = {}
         for cat_data in SAMPLE_CATEGORIES:
-            cat = Category(**cat_data)
-            db.add(cat)
-            db.flush()
+            cat = db.query(Category).filter(Category.slug == cat_data["slug"]).first()
+            if not cat:
+                cat = Category(**cat_data)
+                db.add(cat)
+                db.flush()
             cat_map[cat_data["slug"]] = cat.id
 
         for item in SAMPLE_PRODUCTS:
             prod_data = item.copy()
             cat_slug = prod_data.pop("category")
             price = Decimal(prod_data.pop("price"))
-            product = Product(
-                **prod_data,
-                price=price,
-                category_id=cat_map[cat_slug],
-                sku=f"SKU-{prod_data['name'][:3].upper()}-{abs(hash(prod_data['name'])) % 10000:04d}",
-            )
-            db.add(product)
+            product = db.query(Product).filter(Product.name == prod_data["name"]).first()
+            if not product:
+                product = Product(
+                    **prod_data,
+                    price=price,
+                    category_id=cat_map[cat_slug],
+                    sku=f"SKU-{prod_data['name'][:3].upper()}-{abs(hash(prod_data['name'])) % 10000:04d}",
+                )
+                db.add(product)
 
-        db.add(Coupon(
-            code="WELCOME10",
-            discount_type=DiscountType.percentage,
-            discount_value=Decimal("10"),
-            min_order_amount=Decimal("500"),
-            max_uses=100,
-        ))
-        db.add(Coupon(
-            code="FLAT100",
-            discount_type=DiscountType.fixed,
-            discount_value=Decimal("100"),
-            min_order_amount=Decimal("1000"),
-            max_uses=50,
-        ))
+        if not db.query(Coupon).filter(Coupon.code == "WELCOME10").first():
+            db.add(Coupon(
+                code="WELCOME10",
+                discount_type=DiscountType.percentage,
+                discount_value=Decimal("10"),
+                min_order_amount=Decimal("500"),
+                max_uses=100,
+            ))
+        if not db.query(Coupon).filter(Coupon.code == "FLAT100").first():
+            db.add(Coupon(
+                code="FLAT100",
+                discount_type=DiscountType.fixed,
+                discount_value=Decimal("100"),
+                min_order_amount=Decimal("1000"),
+                max_uses=50,
+            ))
 
         db.commit()
         print("Database seeded successfully!")

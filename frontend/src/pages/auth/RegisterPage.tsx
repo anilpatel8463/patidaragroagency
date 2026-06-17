@@ -27,8 +27,9 @@ export function RegisterPage() {
     try {
       await register(form.full_name, form.email, form.password)
       navigate('/dashboard')
-    } catch {
-      setError('Registration failed. Email may already be in use.')
+    } catch (err: any) {
+      const msg = err?.response?.data?.detail || err?.message || 'Registration failed. Please try again.'
+      setError(msg)
     }
   }
 

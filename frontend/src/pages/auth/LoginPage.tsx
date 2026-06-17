@@ -24,8 +24,9 @@ export function LoginPage() {
       const user = useAuthStore.getState().user
       const redirectPath = user?.role === 'admin' ? '/admin' : from
       navigate(redirectPath, { replace: true })
-    } catch {
-      setError('Invalid email or password')
+    } catch (err: any) {
+      const msg = err?.response?.data?.detail || err?.message || 'Invalid email or password'
+      setError(msg)
     }
   }
 
