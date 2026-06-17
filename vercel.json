@@ -1,28 +1,14 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "dist" }
-    }
-  ],
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "outputDirectory": "frontend/dist",
   "rewrites": [
     {
       "source": "/api/:path*",
       "destination": "https://patidaragroagency-1.onrender.com/api/:path*"
     },
     {
-      "source": "/assets/:path*",
-      "destination": "/frontend/dist/assets/:path*"
-    },
-    {
-      "source": "/:path*",
-      "destination": "/frontend/dist/:path*"
-    },
-    {
-      "source": "/:path*",
-      "destination": "/frontend/dist/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
