@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from app.api.routes import auth, products, categories, cart, orders, payments, reviews, users, coupons, newsletter, admin
 
-api_router = APIRouter(prefix="/api")
+api_router = APIRouter()
 
 api_router.include_router(auth.router)
 api_router.include_router(products.router)
